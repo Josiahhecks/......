@@ -401,20 +401,23 @@
   <div class="container">
     <div class="title">Project X</div>
     <div class="buttons">
-      <!-- All Buttons are Touchable -->
-      <div class="button" style="top: 10%; left: 50%; transform: translateX(-50%);">
+      <!-- YouTube Button -->
+      <div class="button" style="top: 10%; left: 50%; transform: translateX(-50%);" onclick="window.open('https://m.youtube.com/watch?v=x4DAocBKsdo', '_blank')">
         YOUTUBE
         <div class="tooltip">Watch tutorials and videos</div>
       </div>
-      <div class="button" style="top: 50%; left: 90%; transform: translate(-50%, -50%);">
+      <!-- Discord Button -->
+      <div class="button" style="top: 50%; left: 90%; transform: translate(-50%, -50%);" onclick="window.open('https://discord.gg/HfgFJdb3vq', '_blank')">
         DISCORD
         <div class="tooltip">Join the community</div>
       </div>
-      <div class="button" style="top: 90%; left: 50%; transform: translate(-50%, -100%);">
+      <!-- Method Button -->
+      <div class="button" style="top: 90%; left: 50%; transform: translate(-50%, -100%);" onclick="openMethod()">
         METHODS
         <div class="tooltip">Explore methods and techniques</div>
       </div>
-      <div class="button" style="top: 50%; left: 10%; transform: translate(-50%, -50%);">
+      <!-- Project X Button -->
+      <div class="button" style="top: 50%; left: 10%; transform: translate(-50%, -50%);" onclick="window.open('https://is.gd/QZvv5P', '_blank')">
         PROJECTX
         <div class="tooltip">Visit the official website</div>
       </div>
@@ -444,7 +447,7 @@
   <div class="tutorial-section">
     <h2>How to Use Project X</h2>
     <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/your-video-id" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/x4DAocBKsdo" allowfullscreen></iframe>
     </div>
     <div class="steps">
       <h3>Getting Started with Project X</h3>
@@ -545,6 +548,11 @@
     tutorialToggle.addEventListener('click', () => {
       tutorialSection.classList.toggle('active');
     });
+
+    // Method Button Logic
+    function openMethod() {
+      alert("Method functionality is under development. Stay tuned!");
+    }
   </script>
 </body>
-        </html>
+</html>
