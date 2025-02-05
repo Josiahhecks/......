@@ -24,24 +24,32 @@
       height: 100vh;
     }
 
-    /* Animated Background */
-    .background {
+    /* Particle Background */
+    .particle-background {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle, #0a0a0a 10%, #800080 100%);
       z-index: -1;
-      animation: pulseBackground 10s infinite alternate;
+      background: radial-gradient(circle, #0a0a0a 10%, #1a1a1a 100%);
     }
 
-    @keyframes pulseBackground {
-      0% {
-        opacity: 0.8;
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: #800080; /* Purple particles */
+      border-radius: 50%;
+      animation: floatParticle 5s ease-in-out infinite;
+    }
+
+    @keyframes floatParticle {
+      0%, 100% {
+        transform: translateY(0) translateX(0);
       }
-      100% {
-        opacity: 1;
+      50% {
+        transform: translateY(-20px) translateX(20px);
       }
     }
 
@@ -57,7 +65,7 @@
 
     /* Central Title */
     .title {
-      font-size: 48px; /* Smaller title */
+      font-size: 48px;
       font-weight: bold;
       text-transform: uppercase;
       position: absolute;
@@ -139,55 +147,6 @@
       opacity: 1;
     }
 
-    /* Glow Effect for Title */
-    .title::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(128, 0, 128, 0.1) 10%, transparent 50%);
-      transform: translate(-50%, -50%);
-      z-index: -1;
-      animation: glow 3s ease-in-out infinite;
-    }
-
-    @keyframes glow {
-      0%, 100% {
-        opacity: 0.5;
-      }
-      50% {
-        opacity: 1;
-      }
-    }
-
-    /* Particle Effects */
-    .particles {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
-
-    .particle {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      background: #800080; /* Purple particles */
-      border-radius: 50%;
-      animation: floatParticle 5s ease-in-out infinite;
-    }
-
-    @keyframes floatParticle {
-      0%, 100% {
-        transform: translateY(0) translateX(0);
-      }
-      50% {
-        transform: translateY(-20px) translateX(20px);
-      }
-    }
-
     /* Onboarding Tutorial Modal */
     .onboarding-modal {
       position: fixed;
@@ -237,6 +196,50 @@
     .onboarding-content p {
       font-size: 16px;
       margin-bottom: 24px;
+    }
+
+    .onboarding-content .avatar-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 20px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .onboarding-content .avatar-container img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 2px solid #800080;
+      box-shadow: 0 0 20px rgba(128, 0, 128, 0.5);
+    }
+
+    .onboarding-content .avatar-container span {
+      font-size: 24px;
+      font-weight: bold;
+      color: #800080;
+      animation: slideIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideIn {
+      0% {
+        transform: translateX(-20px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+      }
     }
 
     .onboarding-progress {
@@ -394,10 +397,9 @@
   </style>
 </head>
 <body>
-  <div class="background"></div>
-  <div class="particles">
-    <!-- Particles are dynamically generated via JavaScript -->
-  </div>
+  <!-- Particle Background -->
+  <div class="particle-background" id="particle-background"></div>
+
   <div class="container">
     <div class="title">Project X</div>
     <div class="buttons">
@@ -427,6 +429,10 @@
   <!-- Onboarding Tutorial Modal -->
   <div class="onboarding-modal">
     <div class="onboarding-content">
+      <div class="avatar-container">
+        <img src="https://cdn.discordapp.com/avatars/1226611383156740167/c09a4981e216b284ba1630a97be769ef?size=1024" alt="Project X Avatar">
+        <span>project x</span>
+      </div>
       <h2>Welcome to Project X</h2>
       <p>Let's take a quick look at your space control center.</p>
       <div class="onboarding-progress">
@@ -470,6 +476,19 @@
   <button class="start-tutorial" id="start-tutorial">Start Tutorial</button>
 
   <script>
+    // Particle Background Logic
+    const particleBackground = document.getElementById('particle-background');
+    const particleCount = 100;
+
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      particle.style.top = `${Math.random() * 100}%`;
+      particle.style.left = `${Math.random() * 100}%`;
+      particle.style.animationDuration = `${Math.random() * 5 + 3}s`;
+      particleBackground.appendChild(particle);
+    }
+
     // Onboarding Tutorial Logic
     const onboardingModal = document.querySelector('.onboarding-modal');
     const progressSpans = document.querySelectorAll('.onboarding-progress span');
