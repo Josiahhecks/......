@@ -167,16 +167,31 @@
             margin-top: 1rem;
         }
 
-        .tutorial-dropdown {
-            width: 100%;
+        .tutorial-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .tutorial-link {
             background: #ffffff;
             color: #2A0944;
-            padding: 0.8rem;
-            border: 2px solid #2A0944;
-            border-radius: 5px;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            cursor: pointer;
+            padding: 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: transform 0.2s ease;
+        }
+
+        .tutorial-link i {
+            font-size: 1.2rem;
+        }
+
+        .tutorial-link:hover {
+            transform: translateY(-2px);
         }
 
         .marketplace {
@@ -236,11 +251,16 @@
 
             <section class="section">
                 <h2>Beaming Tutorial <i class="fa-regular fa-circle-question help-icon"></i></h2>
-                <select class="tutorial-dropdown" id="tutorialSelect">
-                    <option value="">Select Tutorial</option>
-                    <option value="https://youtu.be/GvNuKWKc7ZA?si=otAJNSIj72Ajt3RX">Mobile Tutorial</option>
-                    <option value="https://www.fuelled.me/share/1b8cc174-894c-4311-b7fd-56dc5058e2ca.mov">PC Tutorial</option>
-                </select>
+                <div class="tutorial-buttons">
+                    <a href="https://youtu.be/GvNuKWKc7ZA?si=otAJNSIj72Ajt3RX" class="tutorial-link" target="_blank">
+                        <i class="fab fa-apple"></i>
+                        iOS Mobile Tutorial
+                    </a>
+                    <a href="https://www.fuelled.me/share/1b8cc174-894c-4311-b7fd-56dc5058e2ca.mov" class="tutorial-link" target="_blank">
+                        <i class="fas fa-desktop"></i>
+                        PC Tutorial
+                    </a>
+                </div>
             </section>
 
             <div class="marketplace">
@@ -294,15 +314,6 @@
                 platformButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
             });
-        });
-
-        // Tutorial dropdown functionality
-        document.getElementById('tutorialSelect').addEventListener('change', function() {
-            const selectedUrl = this.value;
-            if (selectedUrl) {
-                window.open(selectedUrl, '_blank');
-                this.value = '';
-            }
         });
     </script>
 </body>
